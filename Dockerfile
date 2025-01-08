@@ -10,5 +10,5 @@ COPY Calculator.java .
 # 소스 코드 컴파일
 RUN javac Calculator.java
 
-# 실행 파일 지정
-CMD ["java", "Calculator"]
+# 실행 파일 지정 (ENTRYPOINT로 설정)
+ENTRYPOINT ["java", "Calculator"]
