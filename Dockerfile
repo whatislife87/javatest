@@ -1,6 +1,5 @@
-FROM openjdk:17-jdk-slim
+FROM openjdk:11-jdk-slim-buster
 WORKDIR /app
-COPY CalculatorApplication.java /app/
-RUN javac CalculatorApplication.java
+COPY build/libs/*.jar app.jar
 EXPOSE 8000
-ENTRYPOINT ["java", "CalculatorApplication"]
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
