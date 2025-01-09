@@ -1,9 +1,14 @@
-FROM openjdk:11-jdk-slim-buster
+# Use an official OpenJDK runtime as a parent image
+FROM openjdk:17-jdk-slim
 
+# Set the working directory
 WORKDIR /app
 
-COPY Calculator.java /app/src/
+# Copy the application JAR file to the container
+COPY target/calculator-0.0.1-SNAPSHOT.jar app.jar
 
-RUN javac -d classes src/Calculator.java
+# Expose the application port
+EXPOSE 8080
 
-ENTRYPOINT ["java", "-cp", "classes", "Calculator"]
+# Command to run the application
+ENTRYPOINT ["java", "-jar", "app.jar"]
