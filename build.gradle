@@ -12,5 +12,5 @@ dependencies {
 }
 
 application {
-    mainClassName = 'com.example.myapp.MyApplication'
+    mainClassName = 'com.MyApplication'
 }
