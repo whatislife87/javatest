@@ -10,8 +10,5 @@ COPY Calculator.java .
 # 소스 코드 컴파일
 RUN javac Calculator.java
 
-#포트 설정
-EXPOSE 8000
-
 # 실행 파일 지정 (ENTRYPOINT로 설정)
-ENTRYPOINT ["java","-Xms512m", "-Xmx512m","-cp","/app","Calculator"]
+ENTRYPOINT ["java","Calculator"]
