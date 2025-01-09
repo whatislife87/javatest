@@ -1,42 +1,37 @@
-import java.util.Scanner;
+package com.example.calculator;
 
-public class Calculator {
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@SpringBootApplication
+public class CalculatorApplication {
+
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        SpringApplication.run(CalculatorApplication.class, args);
+    }
 
-        System.out.print("num1: ");
-        double num1 = scanner.nextDouble();
+    @GetMapping("/add")
+    public String add(@RequestParam double a, @RequestParam double b) {
+        return "Result: " + (a + b);
+    }
 
-        System.out.print("num2: ");
-        double num2 = scanner.nextDouble();
+    @GetMapping("/subtract")
+    public String subtract(@RequestParam double a, @RequestParam double b) {
+        return "Result: " + (a - b);
+    }
 
-        System.out.print("oper (+, -, *, /): ");
-        char operator = scanner.next().charAt(0);
+    @GetMapping("/multiply")
+    public String multiply(@RequestParam double a, @RequestParam double b) {
+        return "Result: " + (a * b);
+    }
 
-        double result;
-
-        switch (operator) {
-            case '+':
-                result = num1 + num2;
-                break;
-            case '-':
-                result = num1 - num2;
-                break;
-            case '*':
-                result = num1 * num2;
-                break;
-            case '/':
-                if (num2 == 0) {
-                    System.out.println("0으로 나눌 수 없습니다.");
-                    return;
-                }
-                result = num1 / num2;
-                break;
-            default:
-                System.out.println("잘못된 연산자입니다.");
-                return;
+    @GetMapping("/divide")
+    public String divide(@RequestParam double a, @RequestParam double b) {
+        if (b == 0) {
+            return "Error: Division by zero is not allowed.";
         }
-
-        System.out.println("결과: " + result);
+        return "Result: " + (a / b);
     }
 }
